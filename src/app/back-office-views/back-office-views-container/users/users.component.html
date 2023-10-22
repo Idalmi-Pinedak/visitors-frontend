@@ -1,0 +1,20 @@
+<app-card-layout>
+  <div fxLayout="row">
+    <div fxLayout="column">
+      <div class="users-title">Usuarios</div>
+    </div>
+    <div fxFlex fxLayout="row" fxLayoutAlign="start center">
+      <app-search-bar fxFlex (searchOutput)="search($event)"></app-search-bar>
+    </div>
+    <div fxLayout="column" fxLayoutAlign="center start" class="users-add-button-container">
+      <button mat-raised-button color="primary" (click)="onAdd()">Agregar</button>
+    </div>
+  </div>
+  <ag-grid-angular
+    class="ag-theme-balham ag-grid-full-size"
+    [rowData]="users"
+    [columnDefs]="columnDefs"
+    [gridOptions]="gridOptions"
+    [defaultColDef]="defaultColDef">
+  </ag-grid-angular>
+</app-card-layout>

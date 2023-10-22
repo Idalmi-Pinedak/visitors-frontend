@@ -1,0 +1,60 @@
+:host {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  .dashboard-container {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+
+  .blue-grey-fg {
+    color: #607d8b;
+  }
+
+  .orange-fg {
+    color: #ff9800;
+  }
+
+  .red-fg {
+    color: #f44336;
+  }
+
+  .cards-container {
+    padding-left: 5px;
+    padding-right: 5px;
+    display: flex;
+    flex-flow: row wrap;
+    flex: 1 1 100%;
+
+    .card-title {
+      padding-top: 15px;
+      font-size: 14px;
+      color: rgba(0, 0, 0, 0.54);
+      font-weight: 500;
+      text-align: center;
+    }
+
+    .card-quantity {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      flex: 1;
+      font-size: 45px;
+      line-height: 45px;
+      height: 45px;
+      text-align: center;
+    }
+
+    app-dashboard-card {
+      min-height: 200px;
+    }
+  }
+}

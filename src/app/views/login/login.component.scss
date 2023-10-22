@@ -1,0 +1,40 @@
+:host {
+  background: url("/assets/images/volcan-de-pacaya.jpeg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  justify-content: flex-end;
+  align-items: center;
+
+  .login-mat-card {
+    position: relative;
+    height: 100%;
+    width: 350px;
+    box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0px 16px 24px 2px rgba(0, 0, 0, 0.14), 0px 6px 30px 5px rgba(0, 0, 0, 0.12);
+
+    .login-progress-bar {
+      position: absolute;
+      top: 0;
+      right: 0;
+    }
+
+    .logo-container {
+      margin-bottom: 15px;
+
+      img {
+        height: 175px;
+        width: auto;
+      }
+    }
+
+    .login-button {
+      width: 250px;
+      margin-bottom: 5px;
+    }
+  }
+
+}

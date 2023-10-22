@@ -1,0 +1,27 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  height: 100%;
+
+  .page-title {
+    font-weight: 600;
+    font-size: 1.6rem;
+    padding: 20px;
+    color: #1E2129;
+  }
+
+  .visitor-group-info {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 400px;
+
+    .info-key {
+      font-size: 1.1rem;
+    }
+
+    .info-value {
+      font-size: 1.1rem;
+    }
+  }
+}

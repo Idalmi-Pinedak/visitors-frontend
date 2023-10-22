@@ -1,0 +1,7 @@
+<div class="search-bar-wrapper">
+  <mat-icon>search</mat-icon>
+  <input [placeholder]="placeholder" type="text" [(ngModel)]="searchInput" (keyup.enter)="search()"/>
+</div>
+<div class="search-button" *ngIf="showSearchButton">
+  <button mat-raised-button color="primary" (click)="search()">Buscar</button>
+</div>

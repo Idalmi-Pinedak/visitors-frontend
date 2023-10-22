@@ -1,0 +1,23 @@
+<div class="cards-container">
+
+  <app-dashboard-card>
+    <app-floating-spinner *ngIf="loadingRevenueToday"></app-floating-spinner>
+    <div class="card-title">RECAUDADO HOY</div>
+    <div class="card-quantity blue-grey-fg">Q {{amountRevenueToday | number: '1.2-2'}}</div>
+  </app-dashboard-card>
+
+  <app-dashboard-card>
+    <app-floating-spinner *ngIf="loadingRevenueInTheMonth"></app-floating-spinner>
+    <div class="card-title">RECAUDADO EN EL MES</div>
+    <div class="card-quantity red-fg">Q {{amountRevenueInTheMonth | number: '1.2-2'}}</div>
+  </app-dashboard-card>
+
+  <app-dashboard-card>
+    <app-floating-spinner *ngIf="loadingRevenueInTheLastMonth"></app-floating-spinner>
+    <div class="card-title">RECAUDADO EN EL MES ANTERIOR</div>
+    <div class="card-quantity orange-fg">Q {{amountRevenueInTheLastMonth | number: '1.2-2'}}</div>
+  </app-dashboard-card>
+
+</div>
+
+<app-revenue-by-year-chart></app-revenue-by-year-chart>

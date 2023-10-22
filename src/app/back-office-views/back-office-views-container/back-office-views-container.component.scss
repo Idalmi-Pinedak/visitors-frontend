@@ -1,0 +1,44 @@
+:host {
+  .back-office-mat-drawer-container {
+    height: 100%;
+
+    .logo-container {
+      margin-top: 20px;
+      margin-bottom: 15px;
+
+      img {
+        height: 125px;
+        width: auto;
+      }
+    }
+
+    .custom-mat-drawer {
+      background-color: #2D323E;
+    }
+
+    .mat-drawer-nav-list {
+      min-width: 200px;
+
+      .mat-subheader {
+        color: white;
+      }
+
+      .mat-divider {
+        border-top-color: white;
+      }
+
+      .mat-list-item {
+        .mat-icon {
+          color: white;
+        }
+
+        .mat-line {
+          color: white;
+        }
+
+        font-size: 14px;
+        font-weight: 500;
+      }
+    }
+  }
+}

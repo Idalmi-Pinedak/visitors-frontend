@@ -1,0 +1,12 @@
+<p class="description-es">{{question.fieldDescriptionEs}}</p>
+<p class="description-en">{{question.fieldDescriptionEn}}</p>
+
+<div class="question-responses">
+  <mat-checkbox [(ngModel)]="response.checked" *ngFor="let response of question.values"
+                class="response-checkbox"
+                (change)="onCheckValue($event, response.id)">
+    <span>{{response.descriptionEs}}</span>
+    <br>
+    <span>{{response.descriptionEn}}</span>
+  </mat-checkbox>
+</div>

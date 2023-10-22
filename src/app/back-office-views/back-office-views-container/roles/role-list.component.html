@@ -1,0 +1,20 @@
+<app-card-layout>
+  <div fxLayout="row">
+    <div fxLayout="column">
+      <div class="roles-title">Roles</div>
+    </div>
+    <div fxFlex fxLayout="row" fxLayoutAlign="start center">
+      <app-search-bar fxFlex (searchOutput)="search($event)"></app-search-bar>
+    </div>
+    <div fxLayout="column" fxLayoutAlign="center start" class="roles-add-button-container">
+      <button mat-raised-button color="primary" (click)="onAdd()">Agregar</button>
+    </div>
+  </div>
+  <ag-grid-angular
+    class="ag-theme-balham ag-grid-full-size"
+    [rowData]="roles"
+    [columnDefs]="columnDefs"
+    [gridOptions]="gridOptions"
+    [defaultColDef]="defaultColDef">
+  </ag-grid-angular>
+</app-card-layout>

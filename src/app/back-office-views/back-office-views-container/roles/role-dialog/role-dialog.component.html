@@ -1,0 +1,85 @@
+<mat-progress-bar mode="indeterminate" *ngIf="loading" class="dialog-progress-bar"></mat-progress-bar>
+
+<!--<h1 mat-dialog-title>{{dialogTitle}}</h1>-->
+<div mat-dialog-content>
+  <app-mat-simple-tabs>
+    <app-mat-simple-tab [tabTitle]="'Datos generales'">
+      <ng-template appMatSimpleTabContent>
+        <div class="form-wrapper">
+          <form
+            [formGroup]="roleForm"
+            fxLayout="column"
+            fxLayoutAlign="start">
+
+            <mat-form-field appearance="outline">
+              <mat-label>Nombre</mat-label>
+              <input matInput formControlName="name" autocomplete="off"/>
+              <mat-error>
+                Campo requerido
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Codigo</mat-label>
+              <input matInput formControlName="code" autocomplete="off"/>
+              <mat-error>
+                Campo requerido
+              </mat-error>
+            </mat-form-field>
+
+            <div fxLayout="row" fxLayoutAlign="start center" *ngIf="showActiveCheck">
+              <mat-slide-toggle formControlName="active">
+                Activo
+              </mat-slide-toggle>
+            </div>
+          </form>
+        </div>
+      </ng-template>
+    </app-mat-simple-tab>
+    <app-mat-simple-tab [tabTitle]="'Menús'">
+      <ng-template appMatSimpleTabContent>
+
+        <section class="example-section" *ngFor="let menu of parentMenus">
+          <span class="example-list-section">
+            <mat-checkbox class="example-margin"
+                          [checked]="menu.allSelectedChildren"
+                          color="accent"
+                          [indeterminate]="someSelected(menu)"
+                          (change)="setAll($event.checked, menu)">
+              {{menu.name}}
+            </mat-checkbox>
+          </span>
+          <span class="example-list-section">
+            <ul>
+              <li *ngFor="let child of menu.children">
+                <mat-checkbox [(ngModel)]="child.selected"
+                              color="accent"
+                              (ngModelChange)="updateAllSelectedChildren(menu)">
+                  {{child.name}}
+                </mat-checkbox>
+
+                <!-- permisos de menu -->
+                <section *ngIf="child.permissions && child.permissions.length > 0">
+                  <ul>
+                    <span>Permisos:</span>
+                    <li *ngFor="let permission of child.permissions">
+                      <mat-checkbox [(ngModel)]="permission.selected"
+                                    color="accent">
+                        {{permission.description}}
+                      </mat-checkbox>
+                    </li>
+                  </ul>
+                </section>
+              </li>
+            </ul>
+          </span>
+        </section>
+
+      </ng-template>
+    </app-mat-simple-tab>
+  </app-mat-simple-tabs>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="cancelar()" [disabled]="loading">Cancelar</button>
+  <button mat-button (click)="aceptar()" [disabled]="roleForm.invalid || loading">{{okButton}}</button>
+</div>

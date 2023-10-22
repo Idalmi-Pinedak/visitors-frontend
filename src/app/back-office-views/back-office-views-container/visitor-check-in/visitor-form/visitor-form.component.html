@@ -1,0 +1,82 @@
+<div [formGroup]="parentForm" *ngIf="showForm">
+
+  <ng-container formArrayName="visitors">
+    <form [formGroupName]="formIndex" fxLayout="column">
+
+      <div fxLayout="row" class="visitor-number-container">
+        <div fxFlex>
+          <span class="visitor-number">Datos de visitante {{formIndex + 1}}</span>
+        </div>
+
+        <div fxFlex fxLayout="row" fxLayoutAlign="end center">
+          <mat-icon title="Eliminar visitante" class="visitor-remove-icon" (click)="removeVisitor(formIndex)">
+            delete_forever
+          </mat-icon>
+        </div>
+      </div>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Nombre del visitante</mat-label>
+        <input matInput formControlName="visitorName" required>
+
+        <mat-error *ngIf="form.controls['visitorName'].hasError('required')">
+          Campo requerido
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Edad</mat-label>
+        <input type="number" min="1" matInput formControlName="age" required>
+        <mat-error *ngIf="form.controls['age'].hasError('required')">
+          Campo requerido
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>País de residencia</mat-label>
+        <mat-select formControlName="countryId" (openedChange)="countriesFilterControl.onClearFilter()">
+
+          <app-mat-select-search placeholderLabel="Buscar" (searchValueOutput)="onFilterCountries($event)"
+                                 #countriesFilterControl>
+          </app-mat-select-search>
+
+          <mat-option *ngFor="let country of filteredCountries | async" [value]="country.id">
+            {{country.countryName}}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="form.controls['countryId'].hasError('required')">
+          Campo requerido
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Departamento</mat-label>
+        <mat-select formControlName="stateId" (openedChange)="statesFilterControl.onClearFilter()">
+
+          <app-mat-select-search placeholderLabel="Buscar" (searchValueOutput)="onFilterStates($event)"
+                                 #statesFilterControl>
+          </app-mat-select-search>
+
+          <mat-option *ngFor="let state of filteredStates | async" [value]="state.id">
+            {{state.stateName}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Género</mat-label>
+        <mat-select formControlName="genderId">
+          <mat-option *ngFor="let gender of allGenders" [value]="gender.id">
+            {{gender.description}}
+          </mat-option>
+        </mat-select>
+
+        <mat-error *ngIf="form.controls['genderId'].hasError('required')">
+          Campo requerido
+        </mat-error>
+      </mat-form-field>
+
+    </form>
+  </ng-container>
+
+</div>

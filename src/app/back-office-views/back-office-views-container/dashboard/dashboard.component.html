@@ -1,0 +1,34 @@
+<div class="dashboard-container">
+  <mat-tab-group>
+    <mat-tab label="Dashboard de visitantes">
+      <div class="cards-container">
+        <app-dashboard-card>
+          <app-floating-spinner *ngIf="loadingVisitorsRegisteredToday"></app-floating-spinner>
+          <div class="card-title">VISITANTES REGISTRADOS HOY</div>
+          <div class="card-quantity blue-grey-fg">{{quantityVisitorsRegisteredToday | number}}</div>
+        </app-dashboard-card>
+
+        <app-dashboard-card>
+          <app-floating-spinner *ngIf="loadingVisitorsRegisteredInTheMonth"></app-floating-spinner>
+          <div class="card-title">VISITANTES REGISTRADOS EN EL MES</div>
+          <div class="card-quantity red-fg">{{quantityVisitorsRegisteredInTheMonth | number}}</div>
+        </app-dashboard-card>
+
+        <app-dashboard-card>
+          <app-floating-spinner *ngIf="loadingVisitorsRegisteredInTheLastMonth"></app-floating-spinner>
+          <div class="card-title">VISITANTES REGISTRADOS EN EL MES ANTERIOR</div>
+          <div class="card-quantity orange-fg">{{quantityVisitorsRegisteredInTheLastMonth | number}}</div>
+        </app-dashboard-card>
+      </div>
+
+      <app-visitors-by-year-chart></app-visitors-by-year-chart>
+
+      <app-visitors-by-state-chart></app-visitors-by-state-chart>
+    </mat-tab>
+    <mat-tab label="Dashboard de encuestas">
+      <app-survey-response-chart *ngFor="let question of surveyQuestions" [question]="question">
+      </app-survey-response-chart>
+    </mat-tab>
+  </mat-tab-group>
+
+</div>

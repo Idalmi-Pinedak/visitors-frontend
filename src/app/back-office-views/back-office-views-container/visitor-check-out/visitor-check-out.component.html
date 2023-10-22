@@ -1,0 +1,62 @@
+<app-card-layout>
+  <div fxLayout="row">
+    <div fxLayout="column">
+      <div class="page-title">Registrar salida</div>
+    </div>
+    <app-search-bar fxFlex
+                    (searchOutput)="search($event)"
+                    [clearValueOnSearch]="true"
+                    [showSearchButton]="true"
+                    [placeholder]="'Buscar por numero de boleta'">
+    </app-search-bar>
+  </div>
+
+  <div fxFlex fxLayout="row">
+    <div fxFlex fxLayout="column">
+      <div fxLayout="row" fxLayoutAlign="center center">
+        <table class="visitor-group-info" *ngIf="visitorGroup">
+
+          <tr>
+            <td class="info-key">Total visitantes:</td>
+            <td class="info-value">{{visitorGroup.totalVisitors}}</td>
+          </tr>
+
+          <tr>
+            <td class="info-key">Monto:</td>
+            <td class="info-value">Q {{visitorGroup.totalAmount | number:'1.2-2'}}</td>
+          </tr>
+
+          <tr>
+            <td class="info-key">Fecha y hora de ingreso:</td>
+            <td class="info-value">{{visitorGroup.checkInDate | date: 'dd/MM/yyyy HH:mm'}}</td>
+          </tr>
+
+          <tr *ngIf="visitorGroup.checkOutDate">
+            <td class="info-key">Fecha y hora de salida:</td>
+            <td class="info-value">{{visitorGroup.checkOutDate  | date: 'dd/MM/yyyy HH:mm'}}</td>
+          </tr>
+        </table>
+      </div>
+
+      <div fxLayout="row" fxLayoutAlign="center center" *ngIf="visitorGroup">
+        <button mat-raised-button
+                color="primary"
+                (click)="checkOut()"
+                [disabled]="loading || !!visitorGroup.checkOutDate">
+          Marcar salida
+        </button>
+      </div>
+    </div>
+    <div fxFlex>
+      <ag-grid-angular
+        *ngIf="visitorGroup"
+        class="ag-theme-balham ag-grid-full-size"
+        [rowData]="visitors"
+        [columnDefs]="columnDefs"
+        [gridOptions]="gridOptions"
+        [defaultColDef]="defaultColDef">
+      </ag-grid-angular>
+    </div>
+  </div>
+
+</app-card-layout>

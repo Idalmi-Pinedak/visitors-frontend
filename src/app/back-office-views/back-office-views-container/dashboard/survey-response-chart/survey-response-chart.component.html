@@ -1,0 +1,29 @@
+<app-dashboard-card>
+
+  <div fxFlex class="chart-container" *ngIf="!loading">
+    <apx-chart
+      [series]="chartOptions.series"
+      [chart]="chartOptions.chart"
+      [xaxis]="chartOptions.xaxis"
+      [dataLabels]="chartOptions.dataLabels"
+      [grid]="chartOptions.grid"
+      [stroke]="chartOptions.stroke"
+      [title]="chartOptions.title">
+
+    </apx-chart>
+  </div>
+
+  <div fxFlex *ngIf="!loading">
+    <ag-grid-angular
+      class="ag-theme-balham ag-grid-full-size"
+      [rowData]="data"
+      [columnDefs]="columnDefs"
+      [gridOptions]="gridOptions"
+      [pinnedBottomRowData]="footerData"
+      [defaultColDef]="defaultColDef">
+    </ag-grid-angular>
+  </div>
+
+  <app-floating-spinner *ngIf="loading" [strokeWidth]="5"></app-floating-spinner>
+
+</app-dashboard-card>

@@ -1,0 +1,60 @@
+:host {
+  position: relative;
+  display: flex;
+  display: -webkit-flex;
+  flex-direction: column;
+  -webkit-flex-direction: column;
+  flex: 1;
+  height: 100%;
+  width: 100%;
+
+  /* Style the tab */
+  .tab {
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+
+    /* Style the buttons that are used to open the tab content */
+    button {
+      background-color: inherit;
+      float: left;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      padding: 14px 16px;
+      transition: 0.3s;
+      font-family: Roboto, "Helvetica Neue", sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      color: rgba(0, 0, 0, 0.75);
+    }
+
+    /* Change background color of buttons on hover */
+    button:hover {
+      background-color: #ddd;
+    }
+
+    /* Create an active/current tablink class */
+    button.active {
+      background-color: #ccc;
+      color: rgba(0, 0, 0, 0.87);
+    }
+  }
+
+  /* Style the tab content */
+  .tabcontent-wrapper {
+    position: relative;
+    flex-grow: 1;
+
+    .tabcontent {
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      overflow-y: auto;
+      background-color: white;
+
+      &.tab-active {
+        z-index: 10;
+      }
+    }
+  }
+}

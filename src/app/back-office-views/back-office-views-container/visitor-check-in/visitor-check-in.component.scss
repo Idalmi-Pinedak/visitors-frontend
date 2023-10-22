@@ -1,0 +1,24 @@
+:host {
+  .page-title {
+    font-weight: 600;
+    font-size: 1.6rem;
+    padding: 20px;
+    color: #1E2129;
+  }
+
+  .visitors-container {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .table-container {
+    margin-top: 10px;
+    margin-bottom: 20px;
+
+    .number-cell {
+      text-align: right;
+    }
+  }
+}

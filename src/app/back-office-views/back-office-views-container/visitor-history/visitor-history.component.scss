@@ -1,0 +1,16 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  .toolbar {
+    background-color: #2D323E;
+    color: white;
+    height: 50px;
+  }
+
+  .grid-container {
+    margin-top: 5px;
+    position: relative;
+  }
+}

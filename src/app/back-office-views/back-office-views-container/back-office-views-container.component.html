@@ -1,0 +1,37 @@
+<app-main-layout>
+  <mat-drawer-container class="back-office-mat-drawer-container" *ngIf="!loading">
+    <mat-drawer #backOfficeMatDrawer [mode]="'side'" opened class="custom-mat-drawer">
+
+      <div class="logo-container" fxLayout="row" fxLayoutAlign="center center">
+        <img src="assets/images/logos/icon-128px.png"/>
+      </div>
+
+      <mat-nav-list class="mat-drawer-nav-list">
+
+        <ng-container *ngFor="let parentMenu of parentMenus; index as i">
+
+          <mat-divider *ngIf="i > 0"></mat-divider>
+
+          <h3 mat-subheader>{{parentMenu.name}}</h3>
+
+          <mat-list-item *ngFor="let child of parentMenu.children" (click)="goToMenu(child.path)">
+            <mat-icon mat-list-icon>{{child.icon}}</mat-icon>
+            <h4 mat-line>{{child.name}}</h4>
+          </mat-list-item>
+
+        </ng-container>
+
+      </mat-nav-list>
+    </mat-drawer>
+    <mat-drawer-content>
+      <div fxLayout="column" fxFlex>
+        <app-toolbar
+          (toggleMenuEventOutput)="toggleMenu()">
+        </app-toolbar>
+        <div fxFlex>
+          <router-outlet></router-outlet>
+        </div>
+      </div>
+    </mat-drawer-content>
+  </mat-drawer-container>
+</app-main-layout>

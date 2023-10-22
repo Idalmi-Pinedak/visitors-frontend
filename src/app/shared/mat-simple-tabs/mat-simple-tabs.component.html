@@ -1,0 +1,20 @@
+<!-- Tab links -->
+<div class="tab">
+  <ng-container *ngFor="let tab of allTabs; index as i">
+    <button
+      *ngIf="tab.showTab"
+      class="tablinks"
+      (click)="setCurrentTabIndex(i)"
+      [ngClass]="{'active': tabIndex === i}"
+      [disabled]="disableAllTabs">
+      {{tab.tabTitle}}
+    </button>
+  </ng-container>
+</div>
+
+<!-- Tab content -->
+<div class="tabcontent-wrapper">
+  <div class="tabcontent" [ngClass]="{'tab-active': tabIndex === i}" *ngFor="let tab of allTabs; index as i">
+    <ng-template [cdkPortalOutlet]="tab.templateContent"></ng-template>
+  </div>
+</div>

@@ -1,0 +1,29 @@
+<app-card-layout>
+  <app-report-filters (searchOutput)="search($event)"></app-report-filters>
+
+  <div fxLayout="column" fxFlex class="grid-container" *ngIf="showGrid">
+    <mat-toolbar fxLayout="row" fxLayoutAlign="center center" class="toolbar">
+      <span>Historial de visitantes</span>
+    </mat-toolbar>
+
+    <ag-grid-angular
+      class="ag-theme-balham ag-grid-full-size"
+      [cacheBlockSize]="cacheBlockSize"
+      [cacheOverflowSize]="cacheOverflowSize"
+      [defaultColDef]="defaultColDef"
+      [gridOptions]="gridOptions"
+      [columnDefs]="columnDefs"
+      (gridReady)="onGridReady($event)"
+      (paginationChanged)="onPaginationChanged($event)"
+      [infiniteInitialRowCount]="infiniteInitialRowCount"
+      [maxBlocksInCache]="maxBlocksInCache"
+      [overlayLoadingTemplate]="overlayLoadingTemplate"
+      [overlayNoRowsTemplate]="overlayNoRowsTemplate"
+      [paginationPageSize]="pageSize"
+      [pagination]="true"
+      [rowModelType]="'infinite'"
+      [rowSelection]="'multiple'">
+    </ag-grid-angular>
+
+  </div>
+</app-card-layout>

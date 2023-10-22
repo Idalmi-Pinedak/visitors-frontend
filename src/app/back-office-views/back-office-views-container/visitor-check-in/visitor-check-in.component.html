@@ -1,0 +1,70 @@
+<app-card-layout>
+  <div fxLayout="row">
+    <div fxLayout="column">
+      <div class="page-title">Registrar visitante</div>
+    </div>
+  </div>
+
+  <mat-stepper orientation="vertical" [linear]="true" (selectionChange)="onStepChange($event)" #stepper>
+    <mat-step [stepControl]="visitorsForm">
+      <form [formGroup]="visitorsForm" fxLayout="column">
+
+        <ng-template matStepLabel>Información de visitantes</ng-template>
+
+        <div class="visitors-container">
+          <ng-container *ngFor="let form of visitors.controls; let i = index">
+
+            <app-visitor-form [parentForm]="visitorsForm"
+                              [formIndex]="i"
+                              [allGenders]="allGenders"
+                              [allCountries]="allCountries"
+                              (removeVisitorOutput)="removeVisitor($event)">
+            </app-visitor-form>
+
+          </ng-container>
+        </div>
+
+        <div>
+          <button mat-button (click)="addVisitor()">Agregar visitante</button>
+          <button mat-button (click)="goToAdditionalInfoStep()">Siguiente</button>
+        </div>
+      </form>
+
+    </mat-step>
+    <mat-step [stepControl]="surveyForm">
+      <ng-template matStepLabel>Información adicional</ng-template>
+
+      <ng-template matStepContent>
+        <form [formGroup]="surveyForm">
+          <app-survey [form]="surveyForm" [surveyQuestions]="surveyQuestions">
+          </app-survey>
+
+          <div>
+            <button mat-button matStepperPrevious>Regresar</button>
+            <button mat-button matStepperNext>Siguiente</button>
+          </div>
+        </form>
+      </ng-template>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Confirmar datos</ng-template>
+      <div fxLayout="row" class="table-container">
+        <table>
+          <tr>
+            <td>Total de integrantes del grupo menores de 12 años:&nbsp;</td>
+            <td class="number-cell">{{totalVisitorsUnder12YearsOld}}</td>
+          </tr>
+          <tr>
+            <td>Total de integrantes del grupo:&nbsp;</td>
+            <td class="number-cell">{{totalVisitors}}</td>
+          </tr>
+        </table>
+      </div>
+      <div>
+        <button mat-button matStepperPrevious>Regresar</button>
+        <button mat-button (click)="createVisitors()">Registrar</button>
+      </div>
+    </mat-step>
+  </mat-stepper>
+
+</app-card-layout>

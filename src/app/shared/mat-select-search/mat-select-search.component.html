@@ -1,0 +1,13 @@
+<input matInput
+       #searchSelectInput
+       [formControl]="searchInputFormControl"
+       (keydown)="_handleKeydown($event)"
+       [placeholder]="placeholderLabel"/>
+
+<button mat-button
+        mat-icon-button
+        aria-label="Clear"
+        (click)="onClearFilter()"
+        *ngIf="searchInputFormControl.value">
+  <mat-icon>close</mat-icon>
+</button>

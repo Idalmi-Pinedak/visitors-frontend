@@ -1,0 +1,21 @@
+<app-card-layout>
+  <app-report-filters (searchOutput)="search($event)"></app-report-filters>
+
+  <div fxLayout="column" fxFlex class="grid-container" *ngIf="showGrid">
+
+    <mat-toolbar fxLayout="row" fxLayoutAlign="center center" class="toolbar">
+      <span>Historial de ingresos</span>
+    </mat-toolbar>
+
+    <ag-grid-angular
+      class="ag-theme-balham ag-grid-full-size"
+      [rowData]="data"
+      [columnDefs]="columnDefs"
+      [gridOptions]="gridOptions"
+      [pinnedBottomRowData]="footerData"
+      [defaultColDef]="defaultColDef">
+    </ag-grid-angular>
+
+  </div>
+
+</app-card-layout>

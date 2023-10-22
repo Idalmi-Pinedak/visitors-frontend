@@ -1,0 +1,31 @@
+:host {
+
+  .custom-mat-toolbar {
+    position: relative;
+    background-color: #1E2129;
+    color: white;
+
+    .toolbar-progress-bar {
+      position: absolute;
+      bottom: 0;
+    }
+  }
+
+  .user-button {
+    .avatar {
+      width: 40px;
+      min-width: 40px;
+      height: 40px;
+      line-height: 40px;
+      margin: 0 8px 0 0;
+      border-radius: 50%;
+      font-size: 17px;
+      font-weight: 600;
+      text-align: center;
+    }
+
+    .username {
+      margin-right: 12px;
+    }
+  }
+}
