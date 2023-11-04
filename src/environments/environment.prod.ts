@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  api: 'http://143.244.183.66:8080/api/'
+  api: 'https://visitantes-san-vicente-pacaya.com:8083/api/'
 };

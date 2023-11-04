@@ -1,24 +1,30 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CountryModel, GenderModel } from '../../../models/common';
 import { CountryService } from '../../../http-services/common/country.service';
 import { GenderService } from '../../../http-services/common/gender.service';
 import { SurveyService } from '../../../http-services/visitor/survey.service';
 import { SurveyQuestionModel, SurveyQuestionValueModel } from '../../../shared/survey/survey.component';
-import { SurveyTemplateDetailValueModel, VisitorGroupModel, VisitorSurveyModel } from '../../../models/visitor';
+import {
+  PricingModel,
+  SurveyTemplateDetailValueModel,
+  VisitorGroupModel,
+  VisitorSurveyModel
+} from '../../../models/visitor';
 import { MatStepper } from '@angular/material/stepper';
 import { VisitorService } from '../../../http-services/visitor/visitor.service';
 import { ToolbarService } from '../../../shared/toolbar/toolbar.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { SurveyComponentService } from '../../../shared/survey/survey-component.service';
 import { ReportsService } from '../../../http-services/visitor/reports.service';
+import { PricingService } from '../../../http-services/visitor/pricing.service';
 
 @Component({
   selector: 'app-visitor-check-in',
   templateUrl: './visitor-check-in.component.html',
   styleUrls: ['./visitor-check-in.component.scss']
 })
-export class VisitorCheckInComponent implements OnInit, AfterViewInit {
+export class VisitorCheckInComponent implements OnInit {
 
   @ViewChild('stepper')
   stepper: MatStepper;
@@ -28,6 +34,7 @@ export class VisitorCheckInComponent implements OnInit, AfterViewInit {
   surveyQuestions: SurveyQuestionModel[] = [];
   allGenders: GenderModel[] = [];
   allCountries: CountryModel[] = [];
+  allPricing: PricingModel[] = [];
   loading = false;
 
   visitorsForm = this.formBuilder.group({
@@ -46,7 +53,8 @@ export class VisitorCheckInComponent implements OnInit, AfterViewInit {
     private readonly toolbarService: ToolbarService,
     private readonly matSnackBar: MatSnackBar,
     private readonly surveyComponentService: SurveyComponentService,
-    private readonly reportsService: ReportsService
+    private readonly reportsService: ReportsService,
+    private readonly pricingService: PricingService
   ) {
   }
 
@@ -60,7 +68,8 @@ export class VisitorCheckInComponent implements OnInit, AfterViewInit {
       age: [null, [Validators.required, Validators.min(1)]],
       genderId: [null, [Validators.required]],
       countryId: [null, [Validators.required]],
-      stateId: [null]
+      stateId: [null],
+      pricingId: [null, [Validators.required]]
     });
 
     this.visitors.push(form);
@@ -78,7 +87,7 @@ export class VisitorCheckInComponent implements OnInit, AfterViewInit {
   }
 
   removeVisitor(index: number): void {
-    if(index == 0) {
+    if (index == 0) {
       this.showSnackBar('Debe agregar por lo menos un visitante', 'OK', 'snackbar-error');
       return;
     }
@@ -103,7 +112,14 @@ export class VisitorCheckInComponent implements OnInit, AfterViewInit {
     });
 
     const visitorGroup: VisitorGroupModel = {
-      visitors: [...visitorsFormData.visitors],
+      visitors: visitorsFormData.visitors.map(visitor => {
+        const pricing = this.allPricing.find(it => it.id === visitor.pricingId)
+
+        return {
+          ...visitor,
+          entranceFee: pricing?.entranceFee ?? 0
+        }
+      }),
       survey: survey
     }
 
@@ -174,22 +190,6 @@ export class VisitorCheckInComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-    this.countryService
-      .findAll()
-      .then(response => {
-        this.allCountries = [...response];
-      })
-      .catch(err => console.error(err));
-
-    this.genderService
-      .findAll()
-      .then(response => this.allGenders = [...response])
-      .catch(err => console.error(err));
-
-    this.addVisitor();
-  }
-
-  ngAfterViewInit(): void {
     this.surveyService
       .findSurveyTemplate()
       .then(response => {
@@ -208,5 +208,24 @@ export class VisitorCheckInComponent implements OnInit, AfterViewInit {
         });
       })
       .catch(err => console.error(err));
+
+    this.pricingService
+      .findAll()
+      .then(response => this.allPricing = [...response])
+      .catch(err => console.error(err));
+
+    this.countryService
+      .findAll()
+      .then(response => {
+        this.allCountries = [...response];
+      })
+      .catch(err => console.error(err));
+
+    this.genderService
+      .findAll()
+      .then(response => this.allGenders = [...response])
+      .catch(err => console.error(err));
+
+    this.addVisitor();
   }
 }

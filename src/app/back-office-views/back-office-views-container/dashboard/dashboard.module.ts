@@ -11,6 +11,7 @@ import { VisitorsByStateChartComponent } from './visitors-by-state-chart/visitor
 import { SurveyResponseChartComponent } from './survey-response-chart/survey-response-chart.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { AgGridModule } from 'ag-grid-angular';
+import { VisitorsByCountryChartComponent } from './visitors-by-country-chart/visitors-by-country-chart.component';
 
 const routes: Routes = [
   {
@@ -24,7 +25,8 @@ const routes: Routes = [
     DashboardComponent,
     VisitorsByYearChartComponent,
     VisitorsByStateChartComponent,
-    SurveyResponseChartComponent
+    SurveyResponseChartComponent,
+    VisitorsByCountryChartComponent
   ],
   imports: [
     CommonModule,

@@ -11,6 +11,7 @@ import { SurveyTemplateDetailValueModel } from '../../../models/visitor';
 })
 export class DashboardComponent implements OnInit {
 
+  tabIndex = 0;
   surveyQuestions: SurveyQuestionModel[] = [];
 
   loadingVisitorsRegisteredToday = true;

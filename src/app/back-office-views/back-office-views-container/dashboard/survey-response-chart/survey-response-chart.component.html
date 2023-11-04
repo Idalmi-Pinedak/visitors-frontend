@@ -1,6 +1,6 @@
 <app-dashboard-card>
 
-  <div fxFlex class="chart-container" *ngIf="!loading">
+  <div class="chart-container" *ngIf="!loading && tabIndex === 1">
     <apx-chart
       [series]="chartOptions.series"
       [chart]="chartOptions.chart"
@@ -13,7 +13,7 @@
     </apx-chart>
   </div>
 
-  <div fxFlex *ngIf="!loading">
+  <div class="ag-grid-container" *ngIf="!loading && tabIndex === 1">
     <ag-grid-angular
       class="ag-theme-balham ag-grid-full-size"
       [rowData]="data"

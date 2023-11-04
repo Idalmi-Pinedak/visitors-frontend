@@ -61,4 +61,14 @@ export class DashboardService {
     return lastValueFrom(response);
   }
 
+  visitorsByCountry(): Promise<DashboardResponseModel[]> {
+    const token = localStorage.getItem(TOKEN_NAME);
+    const theHeaders = { authorization: `Bearer ${token}` };
+
+    const url = `${environment.api}dashboard/visitors-by-country`;
+    const response = this.httpClient.get<DashboardResponseModel[]>(url, { headers: theHeaders });
+
+    return lastValueFrom(response);
+  }
+
 }

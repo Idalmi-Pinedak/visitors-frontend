@@ -70,6 +70,9 @@ export class SurveyResponseChartComponent implements OnInit {
   @Input()
   question: SurveyQuestionModel = null;
 
+  @Input()
+  tabIndex = 0;
+
   gridOptions: GridOptions = {
     rowHeight: 30,
     // onGridReady: (event) => event.api.sizeColumnsToFit()

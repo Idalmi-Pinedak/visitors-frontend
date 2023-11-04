@@ -1,5 +1,5 @@
 <div class="dashboard-container">
-  <mat-tab-group>
+  <mat-tab-group [(selectedIndex)]="tabIndex">
     <mat-tab label="Dashboard de visitantes">
       <div class="cards-container">
         <app-dashboard-card>
@@ -24,9 +24,12 @@
       <app-visitors-by-year-chart></app-visitors-by-year-chart>
 
       <app-visitors-by-state-chart></app-visitors-by-state-chart>
+
+      <app-visitors-by-country-chart></app-visitors-by-country-chart>
+
     </mat-tab>
     <mat-tab label="Dashboard de encuestas">
-      <app-survey-response-chart *ngFor="let question of surveyQuestions" [question]="question">
+      <app-survey-response-chart *ngFor="let question of surveyQuestions" [question]="question" [tabIndex]="tabIndex">
       </app-survey-response-chart>
     </mat-tab>
   </mat-tab-group>

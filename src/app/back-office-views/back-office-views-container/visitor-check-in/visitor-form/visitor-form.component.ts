@@ -5,6 +5,7 @@ import { CountryModel, GenderModel, StateModel } from '../../../../models/common
 import { ReplaySubject, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { searchByLowerCaseText } from '../../../../constants/constants';
+import { PricingModel } from '../../../../models/visitor';
 
 @Component({
   selector: 'app-visitor-form',
@@ -26,6 +27,9 @@ export class VisitorFormComponent implements OnInit, OnDestroy, OnChanges {
 
   @Input()
   allCountries: CountryModel[] = [];
+
+  @Input()
+  allPricing: PricingModel[] = [];
 
   @Output()
   removeVisitorOutput = new EventEmitter<number>();

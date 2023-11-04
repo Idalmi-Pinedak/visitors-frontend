@@ -22,6 +22,7 @@ export interface VisitorModel {
   genderId: number;
   countryId: number;
   stateId: number;
+  entranceFee?: number;
   visitorGroupId?: number;
 }
 
@@ -38,6 +39,7 @@ export interface VisitorGroupModel {
 export interface DashboardResponseModel {
   month: number;
   stateName: string;
+  countryName?: string;
   count: number;
   amount?: number;
 }
@@ -51,4 +53,10 @@ export interface SurveyDashboardModel {
   month: number;
   responseId: number;
   count: number;
+}
+
+export interface PricingModel {
+  id: number;
+  description: string;
+  entranceFee: number;
 }

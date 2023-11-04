@@ -11,6 +11,7 @@ import { DashboardService } from './visitor/dashboard.service';
 import { ReportsService } from './visitor/reports.service';
 import { RevenueDashboardService } from './visitor/revenue-dashboard.service';
 import { SurveyDashboardService } from './visitor/survey-dashboard.service';
+import { PricingService } from './visitor/pricing.service';
 
 @NgModule({
   declarations: [],
@@ -27,7 +28,8 @@ import { SurveyDashboardService } from './visitor/survey-dashboard.service';
     DashboardService,
     ReportsService,
     RevenueDashboardService,
-    SurveyDashboardService
+    SurveyDashboardService,
+    PricingService
   ]
 })
 export class HttpServicesModule {
